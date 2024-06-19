@@ -1,13 +1,18 @@
-import Navbar from '@renderer/navbar/Navbar'
-import GraficoArea from '@renderer/components/GraficoArea'
+import Navbar from '@renderer/components/navbar/Navbar'
+import CommentOverview from '@renderer/components/plots/overview/CommentOverview'
+import KeywordCloud from '@renderer/components/plots/keywordcloud/KeywordCloud'
+import SentimentOverTime from '@renderer/components/plots/overtime/SentimentOverTime'
 
 function Dashboard(): JSX.Element {
   return (
-    <div className="flex h-screen bg-gradient-to-r from-[#B7D3F3] to-[#FCF7E1]">
+    <div className="flex h-screen bg-graybg">
       <Navbar />
-      <div className="flex-grow bg-white m-7 rounded-lg shadow-2xl p-5 flex justify-center items-center">
-        <GraficoArea />
-        <div className="w-full h-full"></div>
+      <div className="flex-col gap-9 bg-gray m-7 rounded-lg p-5 flex justify-center items-center">
+        <SentimentOverTime />
+        <div className="flex flex-row gap-10">
+          <KeywordCloud />
+          <CommentOverview total={100} positive={67} negative={33} />
+        </div>
       </div>
     </div>
   )

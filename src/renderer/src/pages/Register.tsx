@@ -1,4 +1,4 @@
-import RegisterForm from '@renderer/components/RegisterForm'
+import RegisterForm from '@renderer/components/auth/RegisterForm'
 
 function Register(): JSX.Element {
   return (

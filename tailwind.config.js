@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         'primary': '#8E9FDC',
         'hover': '#808fc6',
-        'cobble': '#666666'
+        'cobble': '#666666',
+        "graybg": '#F1EEF4'
       }
     }
   },
