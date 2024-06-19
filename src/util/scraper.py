@@ -18,7 +18,7 @@ class Scraper:
 
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--incognito")
-        self.options.add_argument("--headless=new")
+        #self.options.add_argument("--headless=new")
         self.driver = webdriver.Chrome(options=self.options, service=Service(ChromeDriverManager().install()))
 
         self.login()
