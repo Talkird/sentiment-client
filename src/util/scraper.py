@@ -3,10 +3,16 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from googletrans import Translator
 from selenium import webdriver
 from textblob import TextBlob
+from CTkMessagebox import CTkMessagebox
+import customtkinter as ctk
 import pandas as pd
 import time
+import sys
 
 class Scraper:
     def __init__(self, url, username, password) -> None:
@@ -42,21 +48,44 @@ class Scraper:
 
     def get_comments(self):
         time.sleep(5) #sacar esto de aca
+        
+        if "#" in sys.argv[1]: url = "https://twitter.com/search?q=%23" + self.url.replace("#", "")
+        elif "@" in sys.argv[1]: url = "https://twitter.com/" + self.url.replace("@", "")
+        else: url = "https://x.com/search?q=" + self.url
 
-        self.driver.get("https://x.com/search?q=" + self.url)
+        self.driver.get(url)
+        time.sleep(5)
 
-        time.sleep(5) #tiempo de espera despues del login
+        i: int = 0
+        visitados = []
+        try:
+            while i < 50:
+                tweets = self.driver.find_elements(By.CSS_SELECTOR, "article[data-testid='tweet']")
+                for tweet in tweets:
+                    if tweet in visitados: continue
+                    else: visitados.append(tweet)
 
-        tweets = self.driver.find_elements(By.CSS_SELECTOR, "article[data-testid='tweet']")
+                    text = tweet.find_element(By.CSS_SELECTOR, "div[data-testid='tweetText']").text
+                    self.comments.append(self.translate(text))
 
-        for tweet in tweets:
-            text = tweet.find_element(By.CSS_SELECTOR, "div[data-testid='tweetText']").text
-            self.comments.append(text)
+                    ActionChains(self.driver)\
+                        .scroll_to_element(tweet)\
+                        .perform()
+                    
+                    #time.sleep(0.125) ????
+                    i += 1
 
+        except Exception as e:
+            print(e)
+        
     def save_to_csv(self):
         df = pd.DataFrame(self.comments, columns=["Comments"])
         df.to_csv("comentarios.csv", index=False)
 
+    def translate(self, text: str):
+        translator = Translator()
+        return translator.translate(text, dest="en").text
+
 
 if __name__ == "__main__":
-    scraper = Scraper("samsung", "sentiment1984", "sentimentscraping1984")
+    scraper = Scraper(sys.argv[1], "sentiment1984", "sentimentscraping1984")

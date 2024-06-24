@@ -1,4 +1,4 @@
-import Navbar from '@renderer/components/navbar/Navbar'
+import Sidebar from '@renderer/components/sidebar/Sidebar'
 import CommentOverview from '@renderer/components/plots/overview/CommentOverview'
 import KeywordCloud from '@renderer/components/plots/keywordcloud/KeywordCloud'
 import SentimentOverTime from '@renderer/components/plots/overtime/SentimentOverTime'
@@ -6,7 +6,7 @@ import SentimentOverTime from '@renderer/components/plots/overtime/SentimentOver
 function Dashboard(): JSX.Element {
   return (
     <div className="flex h-screen bg-graybg">
-      <Navbar />
+      <Sidebar />
       <div className="flex-col gap-9 bg-gray m-7 rounded-lg p-5 flex justify-center items-center">
         <SentimentOverTime />
         <div className="flex flex-row gap-10">
