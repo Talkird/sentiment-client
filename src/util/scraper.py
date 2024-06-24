@@ -49,8 +49,8 @@ class Scraper:
     def get_comments(self):
         time.sleep(5) #sacar esto de aca
         
-        if "#" in sys.argv[1]: url = "https://twitter.com/search?q=%23" + self.url.replace("#", "")
-        elif "@" in sys.argv[1]: url = "https://twitter.com/" + self.url.replace("@", "")
+        if "#" in sys.argv[1]: url = "https://x.com/search?q=%23" + self.url.replace("#", "") #no funca
+        elif "@" in sys.argv[1]: url = "https://x.com/" + self.url.replace("@", "")
         else: url = "https://x.com/search?q=" + self.url
 
         self.driver.get(url)
@@ -59,7 +59,7 @@ class Scraper:
         i: int = 0
         visitados = []
         try:
-            while i < 50:
+            while i < 10:
                 tweets = self.driver.find_elements(By.CSS_SELECTOR, "article[data-testid='tweet']")
                 for tweet in tweets:
                     if tweet in visitados: continue
@@ -72,7 +72,7 @@ class Scraper:
                         .scroll_to_element(tweet)\
                         .perform()
                     
-                    #time.sleep(0.125) ????
+                    time.sleep(1)
                     i += 1
 
         except Exception as e:

@@ -1,21 +1,38 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-
+import { toast } from 'react-hot-toast'
 const { exec } = require('child_process')
 
-function NewSearch() {
+interface NewSearchProps {
+  searchList: string[]
+  addSearch: (search: string) => void
+}
+
+function NewSearch(props: NewSearchProps) {
   const [search, setSearch] = useState('')
 
   function runScraper() {
-    exec('python src/util/scraper.py ' + search, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`exec error: ${error}`)
-        return
-      }
-      console.log(`stdout: ${stdout}`)
-      console.error(`stderr: ${stderr}`)
+    toast('Searching comments', {
+      icon: '⚠️'
     })
+    if (!props.searchList.includes(search)) {
+      exec('python3.9 src/util/scraper.py ' + search, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}`)
+          return
+        } else {
+          console.log('Scraper ran successfully')
+          props.addSearch(search)
+          setSearch('')
+          toast.success('Search added')
+        }
+        console.log(`stdout: ${stdout}`)
+        console.error(`stderr: ${stderr}`)
+      })
+    } else {
+      toast.error('Search already exists')
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +48,7 @@ function NewSearch() {
           className="bg-gray-200 outline-none"
           placeholder="Search tag, brand"
           onChange={handleChange}
+          value={search}
         />
       </div>
       <button
