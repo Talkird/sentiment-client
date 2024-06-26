@@ -2,14 +2,12 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import Poppins from "@electron-fonts/poppins"
 
 function createWindow(): void {
-  
   const mainWindow = new BrowserWindow({
-    width: 1100,
+    width: 1300,
     height: 870,
-    minWidth: 600,
+    minWidth: 850,
     minHeight: 600,
     show: false,
     autoHideMenuBar: true,

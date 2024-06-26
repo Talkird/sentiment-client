@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faChevronUp, faComments, faUser } from '@fortawesome/free-solid-svg-icons'
+import {
+  faChevronDown,
+  faChevronUp,
+  faCog,
+  faComments,
+  faEllipsis,
+  faSliders,
+  faUser,
+  faWrench
+} from '@fortawesome/free-solid-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import ActiveSearchSubItem from './ActiveSearchSubItem'
 
@@ -23,10 +32,22 @@ function ActiveSearch(props: ActiveSearchProps) {
   }
 
   return (
-    <div className="p-3 hover:cursor-pointer w-full bg-primary/30 hover:bg-hover/30">
-      <div className="flex flex-row justify-between items-center gap-10" onClick={toggleRetracted}>
+    <div className="p-3 hover:cursor-pointer w-full">
+      <div
+        className="flex flex-row justify-between hover:bg-hover/30 items-center rounded-lg p-3 gap-10"
+        onClick={toggleRetracted}
+      >
         <h1>{props.search}</h1>
-        <FontAwesomeIcon icon={icon} />
+        <div className="flex flex-row gap-0 items-center">
+          <FontAwesomeIcon
+            icon={faSliders}
+            className="text-black/70 hover:bg-primary/30 rounded-full transition p-2"
+          />
+          <FontAwesomeIcon
+            icon={icon}
+            className="hover:bg-primary/30 rounded-full transition p-2"
+          />
+        </div>
       </div>
       {!retracted && (
         <div className="w-full flex flex-col gap-3 mt-3 px-3">

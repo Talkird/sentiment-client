@@ -25,7 +25,7 @@ function Topbar() {
           </span>
         ))}
       </div>
-      <User />
+      <User username="Amanda" photo="" />
     </div>
   )
 }

@@ -8,9 +8,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from googletrans import Translator
 from selenium import webdriver
 from textblob import TextBlob
-from CTkMessagebox import CTkMessagebox
 import customtkinter as ctk
-import pandas as pd
+import json
 import time
 import sys
 
@@ -21,6 +20,9 @@ class Scraper:
         self.password = password
 
         self.comments = []
+        self.posts = []
+        self.users = []
+
 
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--incognito")
@@ -29,7 +31,7 @@ class Scraper:
 
         self.login()
         self.get_comments()
-        self.save_to_csv()
+        self.save_to_json()
 
     def login(self):
         self.driver.get("https://x.com/i/flow/login")
@@ -66,7 +68,11 @@ class Scraper:
                     else: visitados.append(tweet)
 
                     text = tweet.find_element(By.CSS_SELECTOR, "div[data-testid='tweetText']").text
-                    self.comments.append(self.translate(text))
+                    text = self.translate(text)
+                    polarity = TextBlob(text).sentiment.polarity
+                    assessment = "Positive" if polarity > 0 else "Negative" if polarity < 0 else "Neutral"
+                    
+                    self.comments.append({"comment": text, "polarity": polarity, "assessment": assessment})
 
                     ActionChains(self.driver)\
                         .scroll_to_element(tweet)\
@@ -77,10 +83,12 @@ class Scraper:
 
         except Exception as e:
             print(e)
-        
-    def save_to_csv(self):
-        df = pd.DataFrame(self.comments, columns=["Comments"])
-        df.to_csv("comentarios.csv", index=False)
+
+
+    def save_to_json(self):
+        with open(sys.argv[1] + ".json", "w") as json_file:
+            json.dump(self.comments, json_file, indent=4)
+
 
     def translate(self, text: str):
         translator = Translator()

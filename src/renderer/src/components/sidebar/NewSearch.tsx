@@ -55,7 +55,7 @@ function NewSearch(props: NewSearchProps) {
         className="px-4 py-2 rounded-lg bg-primary hover:bg-hover transition text-white"
         onClick={runScraper}
       >
-        Analyze
+        Search
       </button>
     </div>
   )
