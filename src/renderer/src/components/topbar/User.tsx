@@ -1,16 +1,27 @@
-import photo from './user.jpg'
+import { useEffect, useState } from 'react'
+import { auth } from '@renderer/firebase/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
-interface UserProps {
-  photo: string
-  username: string
-}
+function User() {
+  const [user, setUser] = useState<any>(null)
 
-function User(props: UserProps) {
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user)
+      }
+    })
+  }, [])
+
+  const trimmedEmail = user?.email?.split('@')[0].trim()
+
   return (
     <div className="flex flex-row items-center gap-3">
-      <img className="h-12 mx-auto object-cover rounded-full w-12" src={photo} alt="user" />
+      <div className="bg-primary rounded-full flex items-center justify-center  h-12 w-12">
+        <p className="text-center text-xl text-white">{trimmedEmail?.charAt(0).toUpperCase()}</p>
+      </div>
       <div className="flex flex-col">
-        <p className="text-primary font-medium ">{props.username}</p>
+        <p className="text-primary font-medium ">{trimmedEmail}</p>
         <p className="text-slate-500 text-sm underline hover:cursor-pointer">Settings</p>
       </div>
     </div>

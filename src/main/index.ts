@@ -22,7 +22,7 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-    mainWindow.webContents.openDevTools(); //devtools
+    //mainWindow.webContents.openDevTools(); //devtools
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
