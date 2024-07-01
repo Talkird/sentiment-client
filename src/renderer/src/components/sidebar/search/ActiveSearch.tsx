@@ -3,12 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronDown,
   faChevronUp,
-  faCog,
   faComments,
-  faEllipsis,
   faSliders,
-  faUser,
-  faWrench
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import ActiveSearchSubItem from './ActiveSearchSubItem'

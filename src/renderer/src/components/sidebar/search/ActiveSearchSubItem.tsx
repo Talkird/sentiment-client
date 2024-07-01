@@ -8,8 +8,6 @@ interface ActiveSearchSubItemProps {
   search: string
 }
 
-//todo link
-
 function ActiveSearchSubItem(props: ActiveSearchSubItemProps) {
   const navigate = useNavigate()
 

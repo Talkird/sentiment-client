@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { faCircle, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@renderer/firebase/firebase'
 
 function RegisterForm(): JSX.Element {
   const [name, setUsername] = useState('')
@@ -27,26 +29,23 @@ function RegisterForm(): JSX.Element {
 
   const navigate = useNavigate()
 
-  const handleRegister = async () => {
-    const requestBody = { email, name, password }
-
-    toast.error('Error al registrar usario')
-
-    const response = await fetch('http://localhost:8080/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
-    })
-
-    if (response.ok) {
-      navigate('/dashboard')
-    }
+  const handleRegister = (event: React.FormEvent) => {
+    event.preventDefault()
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success('Successfully registered!')
+        navigate('/login')
+      })
+      .catch((error) => {
+        toast.error(`Registration failed: ${error.message}`)
+      })
   }
 
   return (
-    <div className="m-5 w-full max-w-lg rounded-2xl bg-white p-12 text-center shadow-lg">
+    <form
+      onSubmit={handleRegister}
+      className="m-5 w-full max-w-lg rounded-2xl bg-white p-12 text-center shadow-lg"
+    >
       <div className="flex flex-col justify-center items-center gap-6 mb-10">
         <FontAwesomeIcon icon={faCircle} className="text-primary text-5xl" />
 
@@ -55,7 +54,7 @@ function RegisterForm(): JSX.Element {
 
           <div className="flex flex-row w-full justify-center gap-1 text-center">
             <p className="text-zinc-800 text-base font-normal"> Already have an account? </p>
-            <Link to="/" className="text-neutral-900 text-base font-normal underline">
+            <Link to="/login" className="text-neutral-900 text-base font-normal underline">
               Sign In
             </Link>
           </div>
@@ -65,6 +64,8 @@ function RegisterForm(): JSX.Element {
       <div className="mb-10 flex flex-col">
         <p className="text-left text-cobble text-base font-normal">Username</p>
         <input
+          value={name}
+          onChange={(e) => setUsername(e.target.value)}
           type="text"
           className="p-3 rounded-xl w-full h-10 relative border text-neutral-900 border-cobble border-opacity-30 focus:outline-none"
         />
@@ -73,6 +74,8 @@ function RegisterForm(): JSX.Element {
       <div className="mb-10 flex flex-col">
         <p className="text-left text-cobble text-base font-normal">Email adress</p>
         <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           type="text"
           className="p-3 rounded-xl w-full h-10 relative border text-neutral-900 border-cobble border-opacity-30 focus:outline-none"
         />
@@ -91,6 +94,8 @@ function RegisterForm(): JSX.Element {
           </div>
         </div>
         <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           type={hidden ? 'password' : 'text'}
           className="p-3 rounded-xl w-full h-10 relative border text-neutral-900 border-cobble border-opacity-30 focus:outline-none"
         />
@@ -100,14 +105,12 @@ function RegisterForm(): JSX.Element {
       </div>
 
       <button
+        type="submit"
         className="w-full py-3 text-white rounded-full bg-primary hover:bg-hover transition"
-        onClick={() => {
-          navigate('/')
-        }}
       >
         Join Now
       </button>
-    </div>
+    </form>
   )
 }
 

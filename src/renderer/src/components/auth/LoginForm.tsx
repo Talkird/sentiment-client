@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@renderer/firebase/firebase'
+import toast from 'react-hot-toast'
 
 function LoginForm(): JSX.Element {
   const [email, setEmail] = useState('')
@@ -25,10 +28,23 @@ function LoginForm(): JSX.Element {
 
   const navigate = useNavigate()
 
-  const handleLogin = () => {}
+  const handleLogin = (event: React.FormEvent) => {
+    event.preventDefault()
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success('Logged in!')
+        navigate('/dashboard')
+      })
+      .catch((error) => {
+        toast.error(`Login failed: ${error.message}`)
+      })
+  }
 
   return (
-    <div className="m-5 w-full max-w-lg rounded-2xl bg-white p-12 text-center shadow-lg">
+    <form
+      onSubmit={handleLogin}
+      className="m-5 w-full max-w-lg rounded-2xl bg-white p-12 text-center shadow-lg"
+    >
       <div className="flex flex-col justify-center items-center gap-6 mb-10">
         <FontAwesomeIcon icon={faCircle} className="text-primary text-5xl" />
 
@@ -47,6 +63,8 @@ function LoginForm(): JSX.Element {
       <div className="mb-10 flex flex-col">
         <p className="text-left text-cobble text-base font-normal">Email adress</p>
         <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           type="text"
           className="p-3 rounded-xl w-full h-10 relative border text-neutral-900 border-cobble border-opacity-30 focus:outline-none"
         />
@@ -65,6 +83,8 @@ function LoginForm(): JSX.Element {
           </div>
         </div>
         <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           type={hidden ? 'password' : 'text'}
           className="p-3 rounded-xl w-full h-10 relative border text-neutral-900 border-cobble border-opacity-30 focus:outline-none"
         />
@@ -75,13 +95,11 @@ function LoginForm(): JSX.Element {
 
       <button
         className="w-full py-3 text-white rounded-full bg-primary hover:bg-hover transition"
-        onClick={() => {
-          navigate('/dashboard')
-        }}
+        type="submit"
       >
         Login
       </button>
-    </div>
+    </form>
   )
 }
 
