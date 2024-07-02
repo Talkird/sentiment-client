@@ -8,3 +8,8 @@
 - Martiniano Trigueiro
 - Martina Pariso
 - Santiago Mociulsky
+
+## TODO
+
+- Guardar archivos con # o @ de forma distinta
+- Cargar json a los plots
