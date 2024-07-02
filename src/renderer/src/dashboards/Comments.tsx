@@ -3,7 +3,6 @@ import KeywordCloud from '@renderer/components/plots/keywordcloud/KeywordCloud'
 import SentimentOverTime from '@renderer/components/plots/overtime/SentimentOverTime'
 import CommentOverview from '@renderer/components/plots/overview/CommentOverview'
 import { useEffect, useState } from 'react'
-import apple from '../../../../apple.json'
 
 function Comments() {
   const { search } = useParams<{ search: string }>()
@@ -14,23 +13,31 @@ function Comments() {
   })
 
   useEffect(() => {
+    let total = 0
     let positiveCount = 0
     let negativeCount = 0
 
-    apple.forEach((comment) => {
-      if (comment.assessment === 'Positive') {
-        positiveCount++
-      } else if (comment.assessment === 'Negative') {
-        negativeCount++
-      }
-    })
+    import(`@renderer/data/${search}.json`)
+      .then((jsonData) => {
+        jsonData.default.forEach((comment: { assessment: string }) => {
+          total++
+          if (comment.assessment === 'Positive') {
+            positiveCount++
+          } else if (comment.assessment === 'Negative') {
+            negativeCount++
+          }
+        })
 
-    setData({
-      total: apple.length,
-      positive: positiveCount,
-      negative: negativeCount
-    })
-  }, [])
+        setData({
+          total: total,
+          positive: positiveCount,
+          negative: negativeCount
+        })
+      })
+      .catch((error) => {
+        console.error('Error loading JSON file:', error)
+      })
+  }, [search])
 
   return (
     <div className="flex flex-col gap-5">

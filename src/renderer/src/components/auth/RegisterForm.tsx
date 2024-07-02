@@ -36,8 +36,8 @@ function RegisterForm(): JSX.Element {
         toast.success('Successfully registered!')
         navigate('/login')
       })
-      .catch((error) => {
-        toast.error(`Registration failed: ${error.message}`)
+      .catch(() => {
+        toast.error(`Registration failed.`)
       })
   }
 

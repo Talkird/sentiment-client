@@ -17,7 +17,7 @@ function ActiveSearchSubItem(props: ActiveSearchSubItemProps) {
   return (
     <div className="w-full">
       <div
-        className="flex flex-row gap-3 hover:bg-hover/30 rounded-lg p-2 items-center"
+        className="flex flex-row transition gap-3 hover:bg-hover/30 rounded-lg p-2 items-center"
         onClick={handleClick}
       >
         <FontAwesomeIcon icon={props.icon} className="text-primary" />

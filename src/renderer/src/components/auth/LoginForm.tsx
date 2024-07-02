@@ -35,8 +35,8 @@ function LoginForm(): JSX.Element {
         toast.success('Logged in!')
         navigate('/dashboard')
       })
-      .catch((error) => {
-        toast.error(`Login failed: ${error.message}`)
+      .catch(() => {
+        toast.error(`Login failed.`)
       })
   }
 
