@@ -84,13 +84,12 @@ function RegisterForm(): JSX.Element {
       <div className="mb-10 flex flex-col">
         <div className="flex flex-row justify-between">
           <p className="text-left text-cobble text-base font-normal">Password</p>
-          <div className="flex flex-row items-center justify-center gap-2">
+          <div
+            className="flex flex-row items-center justify-center gap-2 hover:cursor-pointer"
+            onClick={handleHide}
+          >
             <p className="text-cobble text-lg font-normal text-opacity-80">{text}</p>
-            <FontAwesomeIcon
-              icon={icon}
-              className="text-cobble hover:cursor-pointer"
-              onClick={handleHide}
-            />
+            <FontAwesomeIcon icon={icon} className="text-cobble hover:cursor-pointer" />
           </div>
         </div>
         <input

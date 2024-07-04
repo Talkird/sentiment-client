@@ -5,10 +5,10 @@ import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
-    width: 1300,
-    height: 870,
-    minWidth: 850,
-    minHeight: 600,
+    width: 1250,
+    height: 800,
+    minWidth: 1250,
+    minHeight: 800,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -22,7 +22,7 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-    mainWindow.webContents.openDevTools(); //devtools
+    //mainWindow.webContents.openDevTools(); //devtools
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

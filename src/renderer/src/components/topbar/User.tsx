@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { auth } from '@renderer/firebase/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
+import UserSettingsPopup from './UserSettingsPopup'
 
 function User() {
   const [user, setUser] = useState<any>(null)
@@ -22,7 +23,7 @@ function User() {
       </div>
       <div className="flex flex-col">
         <p className="text-primary font-medium ">{trimmedEmail}</p>
-        <p className="text-slate-500 text-sm underline hover:cursor-pointer">Settings</p>
+        <UserSettingsPopup />
       </div>
     </div>
   )

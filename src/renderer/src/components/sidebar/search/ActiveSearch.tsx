@@ -31,7 +31,7 @@ function ActiveSearch(props: ActiveSearchProps) {
   return (
     <div className="p-3 hover:cursor-pointer w-full">
       <div
-        className="flex flex-row justify-between hover:bg-hover/30 items-center rounded-lg p-3 gap-10 transition"
+        className="flex flex-row justify-between hover:bg-primary/30 items-center rounded-lg p-3 gap-10 transition"
         onClick={toggleRetracted}
       >
         <h1>{props.search}</h1>

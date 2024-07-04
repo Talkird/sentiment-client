@@ -6,3 +6,8 @@
     font-family: "Poppins";
     user-select: none; /* ? */
 }
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }

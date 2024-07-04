@@ -9,30 +9,39 @@ interface NewSearchProps {
   addSearch: (search: string) => void
 }
 
-function NewSearch(props: NewSearchProps) {
+function NewSearch({ searchList, addSearch }: NewSearchProps) {
   const [search, setSearch] = useState('')
 
-  function runScraper() {
+  const runScraper = () => {
+    if (!search) {
+      toast.error('Search cannot be empty')
+      return
+    }
+
+    if (searchList.includes(search)) {
+      toast.error('Search already exists')
+      return
+    }
+
     toast('Searching comments', {
       icon: '⚠️'
     })
-    if (!props.searchList.includes(search)) {
-      exec('python3.9 src/util/scraper.py ' + search, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`)
-          return
-        } else {
-          console.log('Scraper ran successfully')
-          props.addSearch(search)
-          setSearch('')
-          toast.success('Search added')
-        }
-        console.log(`stdout: ${stdout}`)
-        console.error(`stderr: ${stderr}`)
-      })
-    } else {
-      toast.error('Search already exists')
-    }
+
+    exec(`python src/util/scraper.py ${search}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`)
+        toast.error('Failed to run scraper')
+        return
+      }
+
+      console.log('Scraper ran successfully')
+      addSearch(search)
+      setSearch('')
+      toast.success('Search added')
+
+      console.log(`stdout: ${stdout}`)
+      console.error(`stderr: ${stderr}`)
+    })
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,23 +49,23 @@ function NewSearch(props: NewSearchProps) {
   }
 
   return (
-    <div className="flex flex-row m-3 gap-3">
-      <div className="flex flex-row items-center gap-3 bg-gray-200 rounded-md p-2">
-        <FontAwesomeIcon icon={faMagnifyingGlass} className="text-gray-500" />
+    <div className="flex flex-col items-center px-4 py-2">
+      <div className="flex flex-row items-center gap-2 bg-graybg rounded-lg w-full max-w-md px-3 py-1 shadow-sm">
         <input
           type="text"
-          className="bg-gray-200 outline-none"
-          placeholder="Search tag, brand"
+          className="bg-graybg outline-none flex-grow px-2 py-1 text-gray-800 rounded-md"
+          placeholder="Search"
           onChange={handleChange}
           value={search}
+          aria-label="Search"
         />
+        <button
+          onClick={runScraper}
+          className="flex items-center justify-center p-2 bg-primary/65 text-white rounded-full hover:bg-primary transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl" />
+        </button>
       </div>
-      <button
-        className="px-4 py-2 rounded-lg bg-primary hover:bg-hover transition text-white"
-        onClick={runScraper}
-      >
-        Search
-      </button>
     </div>
   )
 }
