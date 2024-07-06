@@ -27,7 +27,7 @@ function NewSearch({ searchList, addSearch }: NewSearchProps) {
       icon: '⚠️'
     })
 
-    exec(`python src/util/scraper.py ${search}`, (error, stdout, stderr) => {
+    exec(`python3.9 src/util/scraper.py ${search}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`)
         toast.error('Failed to run scraper')

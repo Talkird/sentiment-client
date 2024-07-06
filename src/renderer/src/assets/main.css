@@ -1,13 +1,15 @@
+@import "@fontsource/poppins";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
     font-family: "Poppins";
-    user-select: none; /* ? */
+    user-select: none;
 }
 
 body {
     overflow-x: hidden;
     overflow-y: hidden;
-  }
+}

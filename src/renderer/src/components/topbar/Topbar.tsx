@@ -1,17 +1,17 @@
 import { useLocation, useParams } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
 import User from './User'
+import LanguageSwitcher from './LanguageSwitcher'
+import Selenium from './Selenium'
 
 function Topbar() {
   const { search } = useParams<{ search: string }>()
   const location = useLocation()
 
   const getPathSegments = () => {
-    const pathParts = location.pathname.split('/').slice(2) // Remove empty string and 'dashboard' from the path
+    const pathParts = location.pathname.split('/').slice(2)
     return pathParts.map((part, index) => ({
-      name: part.charAt(0).toUpperCase() + part.slice(1), // Capitalize the first letter
-      path: pathParts.slice(0, index + 1).join('/') // Construct the path up to this segment
+      name: part.charAt(0).toUpperCase() + part.slice(1),
+      path: pathParts.slice(0, index + 1).join('/')
     }))
   }
 
@@ -25,7 +25,12 @@ function Topbar() {
           </span>
         ))}
       </div>
-      <User username="Amanda" photo="" />
+
+      <div className="flex flex-row items-center gap-12">
+        <Selenium />
+        <LanguageSwitcher />
+        <User />
+      </div>
     </div>
   )
 }

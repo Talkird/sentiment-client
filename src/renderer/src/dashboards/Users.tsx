@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 
-function Posts() {
+function Users() {
   const { search } = useParams<{ search: string }>()
   return (
     <div className="h-screen">
@@ -9,4 +9,4 @@ function Posts() {
   )
 }
 
-export default Posts
+export default Users

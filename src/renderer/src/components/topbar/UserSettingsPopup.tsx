@@ -1,3 +1,5 @@
+import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
@@ -14,15 +16,20 @@ function UserSettingsPopup() {
       arrow={false}
     >
       <div className="flex flex-col p-2">
-        <p
-          className="py-1 cursor-pointer hover:bg-primary/30 rounded-lg p-2"
-          onClick={() => {
-            navigate('/dashboard/accounts')
-          }}
-        >
-          Manage accounts
-        </p>
-        <p className="py-1 cursor-pointer hover:bg-primary/30 rounded-lg p-2">Logout</p>
+        <div className="flex flex-row px-2 py-1 gap-3 items-center cursor-pointer hover:bg-primary/30 rounded-lg">
+          <FontAwesomeIcon icon={faUser} />
+          <p
+            onClick={() => {
+              navigate('/dashboard/accounts')
+            }}
+          >
+            Accounts
+          </p>
+        </div>
+        <div className="flex flex-row px-2 py-1 gap-3 items-center cursor-pointer hover:bg-primary/30 rounded-lg">
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          <p className="">Logout</p>
+        </div>
       </div>
     </Popup>
   )
