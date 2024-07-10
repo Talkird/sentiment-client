@@ -5,9 +5,9 @@ const iconPath = join(__dirname, '../renderer/src/assets/icon.png');
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
-    width: 1250,
+    width: 1350,
     height: 800,
-    minWidth: 1250,
+    minWidth: 1350,
     minHeight: 800,
     show: false,
     autoHideMenuBar: true,
@@ -22,6 +22,7 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+    mainWindow.webContents.openDevTools()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

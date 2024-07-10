@@ -49,23 +49,21 @@ function NewSearch({ searchList, addSearch }: NewSearchProps) {
   }
 
   return (
-    <div className="flex flex-col items-center px-4 py-2">
-      <div className="flex flex-row items-center gap-2 bg-graybg rounded-lg w-full max-w-md px-3 py-1 shadow-sm">
-        <input
-          type="text"
-          className="bg-graybg outline-none flex-grow px-2 py-1 text-gray-800 rounded-md"
-          placeholder="Search"
-          onChange={handleChange}
-          value={search}
-          aria-label="Search"
-        />
-        <button
-          onClick={runScraper}
-          className="flex items-center justify-center p-2 bg-primary/65 text-white rounded-full hover:bg-primary transition focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl" />
-        </button>
-      </div>
+    <div className="flex flex-row items-center bg-graybg rounded-lg px-4 py-2 mx-4 shadow-sm">
+      <input
+        type="text"
+        className="bg-graybg outline-none flex-grow px-2 py-1 text-gray-800 rounded-md"
+        placeholder="Search"
+        onChange={handleChange}
+        value={search}
+        aria-label="Search"
+      />
+      <button
+        onClick={runScraper}
+        className="flex items-center justify-center p-2 bg-primary/65 text-white rounded-full hover:bg-primary transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+        <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl" />
+      </button>
     </div>
   )
 }

@@ -14,7 +14,7 @@ function Sidebar(): JSX.Element {
   }
 
   return (
-    <nav className="flex flex-col h-screen bg-white shadow-md justify-between overflow-y-auto">
+    <nav className="flex flex-col h-screen bg-white shadow-md justify-between overflow-y-auto min-w-96">
       <div className="flex flex-col gap-2">
         <div
           className="flex flex-row gap-4 items-center justify-start mt-5 ml-4 hover:cursor-pointer"

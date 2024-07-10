@@ -27,7 +27,6 @@ function Topbar() {
       </div>
 
       <div className="flex flex-row items-center gap-12">
-        <Selenium />
         <LanguageSwitcher />
         <User />
       </div>
