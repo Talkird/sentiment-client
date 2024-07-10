@@ -17,7 +17,7 @@ function UserSettingsPopup() {
     >
       <div className="flex flex-col p-2">
         <div className="flex flex-row px-2 py-1 gap-3 items-center cursor-pointer hover:bg-primary/30 rounded-lg">
-          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon icon={faUser} className="text-primary/65" />
           <p
             onClick={() => {
               navigate('/dashboard/accounts')
@@ -27,7 +27,7 @@ function UserSettingsPopup() {
           </p>
         </div>
         <div className="flex flex-row px-2 py-1 gap-3 items-center cursor-pointer hover:bg-primary/30 rounded-lg">
-          <FontAwesomeIcon icon={faRightFromBracket} />
+          <FontAwesomeIcon icon={faRightFromBracket} className="text-primary/65" />
           <p className="">Logout</p>
         </div>
       </div>
