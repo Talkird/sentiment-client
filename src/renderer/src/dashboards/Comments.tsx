@@ -1245,7 +1245,6 @@ function Comments() {
         <KeywordCloud data={cloudData} />
       </div>
       <RawData rawData={tableData} />
-      <CommentOverview total={data.total} positive={data.positive} negative={data.negative} />
     </div>
   )
 }

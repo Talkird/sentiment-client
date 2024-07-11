@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell } from 'recharts'
+import { PieChart, Pie, Cell, Tooltip } from 'recharts'
 
 interface SentimentPieChartProps {
   data: { name: string; value: number }[]
@@ -25,6 +25,7 @@ function SentimentPieChart(props: SentimentPieChartProps) {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
+        <Tooltip />
       </PieChart>
       <div className="flex flex-col p-2 text-indigo-950">
         <div className="flex flex-row gap-2 items-center">

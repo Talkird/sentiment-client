@@ -12,6 +12,6 @@
 ## TODO
 
 - Guardar archivos con # o @ de forma distinta
-- Cargar json a los plots
-- Actualizar parte servidor 
-- Actualizar diagrama de arquitectura
+- Arreglar bug tabla
+- Filtro
+- Cuenta twitter
