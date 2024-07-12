@@ -4,7 +4,7 @@ interface RawDataProps {
 
 function RawData(props: RawDataProps) {
   return (
-    <div className="flex flex-col bg-white gap-2 p-5 rounded-xl w-full">
+    <div className="flex flex-col bg-white gap-2 p-5 rounded-xl w-full max-h-96">
       <h1 className="text-indigo-950 text-xl font-semibold">Raw Data</h1>
       <div className="flex flex-col gap-2 overflow-y-auto">
         {props.rawData.map((data, index) => (

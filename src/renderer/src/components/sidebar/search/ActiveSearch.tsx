@@ -1,48 +1,35 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faChevronDown,
-  faChevronUp,
-  faComments,
-  faSliders,
-  faUser
-} from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faChevronUp, faComments, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import ActiveSearchSubItem from './ActiveSearchSubItem'
+import DeleteSearchPopup from './DeleteSearchPopup'
 
 interface ActiveSearchProps {
   search: string
+  removeSearch: (search: string) => void
 }
 
 function ActiveSearch(props: ActiveSearchProps) {
-  const [selected, setSelected] = useState(false)
   const [retracted, setRetracted] = useState(true)
   const [icon, setIcon] = useState(faChevronDown)
 
   const toggleRetracted = () => {
     setRetracted(!retracted)
-    if (retracted) {
-      setIcon(faChevronUp)
-    } else {
-      setIcon(faChevronDown)
-    }
+    setIcon(retracted ? faChevronUp : faChevronDown)
+    alert(props.search)
   }
 
   return (
     <div className="p-3 hover:cursor-pointer w-full">
-      <div
-        className="flex flex-row justify-between hover:bg-primary/30 items-center rounded-lg p-3 gap-10 transition"
-        onClick={toggleRetracted}
-      >
+      <div className="flex flex-row justify-between hover:bg-primary/30 items-center rounded-lg p-3 gap-10 transition">
         <h1>{props.search}</h1>
         <div className="flex flex-row gap-0 items-center">
-          <FontAwesomeIcon
-            icon={faSliders}
-            className="text-black/70 hover:bg-primary/30 rounded-full transition p-2"
-          />
+          <DeleteSearchPopup search={props.search} removeSearch={props.removeSearch} />
           <FontAwesomeIcon
             icon={icon}
             className="hover:bg-primary/30 rounded-full transition p-2"
+            onClick={toggleRetracted}
           />
         </div>
       </div>

@@ -86,7 +86,18 @@ class Scraper:
 
 
     def save_to_json(self):
-        with open(sys.argv[1] + ".json", "w") as json_file:
+
+        if "#" in sys.argv[1]: 
+            prefix = "hashtag_"
+            sys.argv[1] = sys.argv[1].replace("#", "")
+
+        elif "@" in sys.argv[1]: 
+            prefix = "user_"
+            sys.argv[1] = sys.argv[1].replace("@", "")
+        else: prefix = ''
+
+
+        with open("src/renderer/src/data/" + prefix + sys.argv[1] + ".json", "w") as json_file:
             json.dump(self.comments, json_file, indent=4)
 
 

@@ -1186,8 +1186,12 @@ function Comments() {
       'zz'
     ])
 
-    if (search !== undefined) {
+    if (search !== undefined && search.indexOf(' ') === -1) {
       stopWords.add(search)
+    } else if (search !== undefined) {
+      search.split(' ').forEach((word) => {
+        stopWords.add(word)
+      })
     }
 
     import(`@renderer/data/${search}.json`)
@@ -1245,6 +1249,7 @@ function Comments() {
         <KeywordCloud data={cloudData} />
       </div>
       <RawData rawData={tableData} />
+      <CommentOverview total={data.total} positive={data.positive} negative={data.negative} />
     </div>
   )
 }

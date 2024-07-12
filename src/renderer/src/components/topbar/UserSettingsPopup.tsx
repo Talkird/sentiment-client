@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
+import { auth } from '@renderer/firebase/firebase'
 
 function UserSettingsPopup() {
   const navigate = useNavigate()
@@ -26,7 +27,13 @@ function UserSettingsPopup() {
             Accounts
           </p>
         </div>
-        <div className="flex flex-row px-2 py-1 gap-3 items-center cursor-pointer hover:bg-primary/30 rounded-lg">
+        <div
+          className="flex flex-row px-2 py-1 gap-3 items-center cursor-pointer hover:bg-primary/30 rounded-lg"
+          onClick={() => {
+            auth.signOut()
+            navigate('/login')
+          }}
+        >
           <FontAwesomeIcon icon={faRightFromBracket} className="text-primary/65" />
           <p className="">Logout</p>
         </div>
