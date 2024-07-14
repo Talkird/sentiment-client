@@ -11,7 +11,6 @@
 
 ## TODO
 
-- Guardar archivos con # o @ de forma distinta
 - Arreglar bug tabla
 - Filtro
 - Cuenta twitter

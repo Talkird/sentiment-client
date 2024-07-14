@@ -1186,6 +1186,10 @@ function Comments() {
       'zz'
     ])
 
+    if (search !== undefined && (search.startsWith('@') || search.startsWith('#'))) {
+      stopWords.add(search.slice(1))
+    }
+
     if (search !== undefined && search.indexOf(' ') === -1) {
       stopWords.add(search)
     } else if (search !== undefined) {

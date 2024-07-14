@@ -3,21 +3,21 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from googletrans import Translator
 from selenium import webdriver
 from textblob import TextBlob
-import customtkinter as ctk
 import json
 import time
 import sys
 
 class Scraper:
-    def __init__(self, url, username, password) -> None:
+    def __init__(self, url, username, password, amount, spamfilter) -> None:
         self.url = url
         self.username = username
         self.password = password
+        self.amount = int(amount)
+        self.use_spamfilter = spamfilter.lower() == 'true'
 
         self.comments = []
         self.posts = []
@@ -61,7 +61,7 @@ class Scraper:
         i: int = 0
         visitados = []
         try:
-            while i < 10:
+            while i < self.amount:
                 tweets = self.driver.find_elements(By.CSS_SELECTOR, "article[data-testid='tweet']")
                 for tweet in tweets:
                     if tweet in visitados: continue
@@ -86,18 +86,7 @@ class Scraper:
 
 
     def save_to_json(self):
-
-        if "#" in sys.argv[1]: 
-            prefix = "hashtag_"
-            sys.argv[1] = sys.argv[1].replace("#", "")
-
-        elif "@" in sys.argv[1]: 
-            prefix = "user_"
-            sys.argv[1] = sys.argv[1].replace("@", "")
-        else: prefix = ''
-
-
-        with open("src/renderer/src/data/" + prefix + sys.argv[1] + ".json", "w") as json_file:
+        with open("src/renderer/src/data/" + sys.argv[1] + ".json", "w") as json_file:
             json.dump(self.comments, json_file, indent=4)
 
 
@@ -107,4 +96,4 @@ class Scraper:
 
 
 if __name__ == "__main__":
-    scraper = Scraper(sys.argv[1], "sentiment1984", "sentimentscraping1984")
+    scraper = Scraper(sys.argv[1], "sentiment1984", "sentimentscraping1984", sys.argv[2], sys.argv[3])

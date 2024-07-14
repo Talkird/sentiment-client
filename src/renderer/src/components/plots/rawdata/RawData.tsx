@@ -1,8 +1,14 @@
+import { useEffect } from 'react'
+
 interface RawDataProps {
   rawData: { comment: string; sentiment: string }[]
 }
 
 function RawData(props: RawDataProps) {
+  useEffect(() => {
+    console.log('Raw data:', props.rawData)
+  }, [props.rawData])
+
   return (
     <div className="flex flex-col bg-white gap-2 p-5 rounded-xl w-full max-h-96">
       <h1 className="text-indigo-950 text-xl font-semibold">Raw Data</h1>

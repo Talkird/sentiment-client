@@ -18,15 +18,9 @@ function Sidebar(): JSX.Element {
   const removeSearch = (searchToRemove: string) => {
     setSearchList((prevList) => prevList.filter((search) => search !== searchToRemove))
 
-    if (searchToRemove[0] === '#') {
-      searchToRemove = 'hashtag_' + searchToRemove.slice(1)
-    } else if (searchToRemove[0] === '@') {
-      searchToRemove = 'user_' + searchToRemove.slice(1)
-    }
-
     const filePath = path.join(
       __dirname,
-      '../../../../../../src/renderer/src/data/',
+      '../../../../../../../../src/renderer/src/data/',
       searchToRemove + '.json'
     )
     fs.unlink(filePath, (err) => {
@@ -39,15 +33,14 @@ function Sidebar(): JSX.Element {
   }
 
   const getSearchFiles = () => {
-    const directoryPath = path.join(__dirname, '../../../../../../src/renderer/src/data/')
-
+    const directoryPath = path.join(__dirname, '../../../../../../../../src/renderer/src/data/')
     return new Promise<string[]>((resolve, reject) => {
       fs.readdir(directoryPath, (err, files) => {
         if (err) {
           reject('Unable to scan directory: ' + err)
         } else {
           console.log('Files read from directory:', files) // Log files read
-          // Remove the file extensions
+
           const fileNamesWithoutExtensions = files.map((file) => path.parse(file).name)
           resolve(fileNamesWithoutExtensions)
         }
@@ -59,16 +52,7 @@ function Sidebar(): JSX.Element {
     const loadSearchFiles = async () => {
       try {
         const files = await getSearchFiles()
-        console.log('Files without extensions:', files)
-
-        for (let file of files) {
-          if (file.startsWith('hashtag_')) {
-            file = file.replace('hashtag_', '#')
-          } else if (file.startsWith('user_')) {
-            file = file.replace('user_', '@')
-          }
-        }
-
+        console.log('Archivos antes de cambio:', files)
         setSearchList(files)
       } catch (error) {
         console.error('Error loading search files:', error)

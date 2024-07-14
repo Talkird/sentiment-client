@@ -17,7 +17,6 @@ function ActiveSearch(props: ActiveSearchProps) {
   const toggleRetracted = () => {
     setRetracted(!retracted)
     setIcon(retracted ? faChevronUp : faChevronDown)
-    alert(props.search)
   }
 
   return (
@@ -35,8 +34,8 @@ function ActiveSearch(props: ActiveSearchProps) {
       </div>
       {!retracted && (
         <div className="w-full flex flex-col gap-3 mt-3 px-3">
-          <ActiveSearchSubItem title="Comments" icon={faComments} search={props.search} />
           <ActiveSearchSubItem title="Posts" icon={faTwitter} search={props.search} />
+          <ActiveSearchSubItem title="Comments" icon={faComments} search={props.search} />
           <ActiveSearchSubItem title="Users" icon={faUser} search={props.search} />
         </div>
       )}

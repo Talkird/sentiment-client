@@ -1,5 +1,25 @@
 [
     {
+        "comment": "The Learning Curve, Part 8: Creating Conversations From Japan to the World",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "[Galaxy Unpacked 2024] The Future of Mobile AI: Expert Panel Highlights Collaborative, Responsible AI Innovation",
+        "polarity": 0.1,
+        "assessment": "Positive"
+    },
+    {
+        "comment": "[Design Story] Ultra Modern, Ultra Sleek: Galaxy Z Fold 6 and Galaxy Z Flip 6",
+        "polarity": 0.2,
+        "assessment": "Positive"
+    },
+    {
+        "comment": "[Galaxy Unpacked 2024] A New Era of Galaxy AI Unfolds at the Louvre in Paris",
+        "polarity": 0.13636363636363635,
+        "assessment": "Positive"
+    },
+    {
         "comment": "Samsung Unveils Exclusive Galaxy Z Flip6 Olympic Edition, Powered by Galaxy AI, for Paris 2024 Athletes",
         "polarity": 0.0,
         "assessment": "Neutral"
@@ -71,6 +91,26 @@
     },
     {
         "comment": "[Interview] Visualizing Tranquility: Serge Hamad x Samsung Art Store",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "Samsung Electronics Announces Earnings Guidance for Second Quarter 2024",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "The Learning Curve 7 \u2013 Poland: Collaboration and Communication Across European Borders and Cultures",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "[Galaxy History \u2461] Evolution of the Galaxy Buds Series: Listening Innovation That Eliminated Wires",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "Samsung Invites Fans Around the World to Galaxy Experience Spaces, Showcasing the Next Chapter of Galaxy AI",
         "polarity": 0.0,
         "assessment": "Neutral"
     }
