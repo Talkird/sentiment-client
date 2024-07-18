@@ -33,15 +33,6 @@ function SearchSettingsPopup(props: SearchSettingsPopupProps) {
             className="w-full outline-none bg-gray-200 px-4 py-2 rounded-lg"
           />
         </div>
-        <div className="flex flex-row px-2 py-1 gap-6 items-center rounded-lg">
-          <p>Spam filter</p>
-          <input
-            type="checkbox"
-            checked={props.spamFilter}
-            onChange={() => props.setSpamFilter(!props.spamFilter)}
-            className="outline-none bg-gray-200 w-6 h-6 rounded-lg text-white hover:accent-primary accent-primary/65 transition-all cursor-pointer"
-          />
-        </div>
       </div>
     </Popup>
   )

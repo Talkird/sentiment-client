@@ -23,7 +23,6 @@ class Scraper:
         self.posts = []
         self.users = []
 
-
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--incognito")
         #self.options.add_argument("--headless=new")

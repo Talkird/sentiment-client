@@ -1,5 +1,30 @@
 [
     {
+        "comment": "Samsung Releases Galaxy Brand Anthem \u2018Open Always Wins\u2019 With TOMORROW X TOGETHER",
+        "polarity": 0.15,
+        "assessment": "Positive"
+    },
+    {
+        "comment": "Samsung Completes Validation of Industry\u2019s Fastest LPDDR5X for Use With MediaTek\u2019s Flagship Mobile Platform",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "Samsung Tizen OS To Power Loewe\u2019s Latest Luxury TV, Stellar",
+        "polarity": 0.375,
+        "assessment": "Positive"
+    },
+    {
+        "comment": "Samsung Researcher Named Chair of ITU-R Coordination Group for 6G Standardization",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
+        "comment": "Samsung Members Connect: Galaxy Fans Around the World Unite in Paris With Galaxy AI",
+        "polarity": 0.0,
+        "assessment": "Neutral"
+    },
+    {
         "comment": "The Learning Curve, Part 8: Creating Conversations From Japan to the World",
         "polarity": 0.0,
         "assessment": "Neutral"
@@ -86,31 +111,6 @@
     },
     {
         "comment": "[Video] Galaxy Unpacked July 2024: Unfold Your Story",
-        "polarity": 0.0,
-        "assessment": "Neutral"
-    },
-    {
-        "comment": "[Interview] Visualizing Tranquility: Serge Hamad x Samsung Art Store",
-        "polarity": 0.0,
-        "assessment": "Neutral"
-    },
-    {
-        "comment": "Samsung Electronics Announces Earnings Guidance for Second Quarter 2024",
-        "polarity": 0.0,
-        "assessment": "Neutral"
-    },
-    {
-        "comment": "The Learning Curve 7 \u2013 Poland: Collaboration and Communication Across European Borders and Cultures",
-        "polarity": 0.0,
-        "assessment": "Neutral"
-    },
-    {
-        "comment": "[Galaxy History \u2461] Evolution of the Galaxy Buds Series: Listening Innovation That Eliminated Wires",
-        "polarity": 0.0,
-        "assessment": "Neutral"
-    },
-    {
-        "comment": "Samsung Invites Fans Around the World to Galaxy Experience Spaces, Showcasing the Next Chapter of Galaxy AI",
         "polarity": 0.0,
         "assessment": "Neutral"
     }

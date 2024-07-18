@@ -8,7 +8,7 @@ function Dashboard(): JSX.Element {
       <Sidebar />
       <div className="flex flex-col flex-grow">
         <Topbar />
-        <div className="p-4 overflow-y-auto">
+        <div className="flex-grow p-4 overflow-y-auto">
           <Outlet />
         </div>
       </div>

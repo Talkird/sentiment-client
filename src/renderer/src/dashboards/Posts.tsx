@@ -1224,7 +1224,7 @@ function Posts() {
         const formattedCloudData = Object.entries(wordFreq)
           .map(([value, count]) => ({ value, count }))
           .sort((a, b) => b.count - a.count)
-          .slice(0, 20)
+          .slice(0, 50)
 
         setData({
           total: total,
@@ -1248,12 +1248,13 @@ function Posts() {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-row gap-5">
-        <SentimentOverTime pieData={pieData} />
         <SentimentPieChart data={pieData} />
         <KeywordCloud data={cloudData} />
+        <div className="mt-2.5">
+          <CommentOverview total={data.total} positive={data.positive} negative={data.negative} />
+        </div>
       </div>
       <RawData rawData={tableData} />
-      <CommentOverview total={data.total} positive={data.positive} negative={data.negative} />
     </div>
   )
 }

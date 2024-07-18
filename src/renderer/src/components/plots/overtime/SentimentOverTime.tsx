@@ -7,7 +7,9 @@ interface SentimentOverTimeProps {
 function SentimentOverTime(props: SentimentOverTimeProps) {
   return (
     <div className="bg-white p-5 rounded-xl">
-      <h1 className="text-indigo-950 text-xl mb-5 font-semibold">Sentiment Over Time</h1>
+      <h1 className="text-indigo-950 text-xl mb-5 font-semibold">
+        Sentiment Over Time (Coming soon)
+      </h1>
       <div className="flex flex-col items-center">
         <SentimentPercentChart />
         <div className="flex flex-row gap-8 p-2 text-indigo-950">

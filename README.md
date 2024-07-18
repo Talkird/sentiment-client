@@ -14,3 +14,5 @@
 - Arreglar bug tabla
 - Filtro
 - Cuenta twitter
+- % Sentiment distribution
+

@@ -1247,13 +1247,7 @@ function Comments() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-row gap-5">
-        <SentimentOverTime pieData={pieData} />
-        <SentimentPieChart data={pieData} />
-        <KeywordCloud data={cloudData} />
-      </div>
-      <RawData rawData={tableData} />
-      <CommentOverview total={data.total} positive={data.positive} negative={data.negative} />
+      <h1 className="h-screen items-center text-xl text-">Coming soon...</h1>
     </div>
   )
 }
